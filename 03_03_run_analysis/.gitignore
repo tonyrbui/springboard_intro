@@ -1,0 +1,8 @@
+X_test.txt
+X_train.txt
+activity_labels.txt
+features.txt
+subject_test.txt
+subject_train.txt
+y_test.txt
+y_train.txt
