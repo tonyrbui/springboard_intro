@@ -6,7 +6,7 @@ library(readr)
 options(dplyr.width = Inf)
 
 ref_df <-
-  as_tibble(read.csv(file = "refine_original.csv", header = TRUE, sep = ","))
+  as_tibble(read.csv(file = "03_01_refine/refine_original.csv", header = TRUE, sep = ","))
 
 # Standardizing companies
 ref_df$company <- tolower(ref_df$company)
@@ -70,4 +70,4 @@ ref_df <- ref_df %>%
   )
 
 # Creating refine_clean.csv
-write_csv(x = ref_df, path = "refine_clean.csv")
+write_csv(x = ref_df, path = "03_01_refine/refine_clean.csv")
