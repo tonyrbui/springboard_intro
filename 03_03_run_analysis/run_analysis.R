@@ -4,12 +4,12 @@ library(dplyr)
 library(readr)
 
 # options(dplyr.width = Inf)
-# rm(list=ls())
+rm(list=ls())
 
 features_df <-
   as_tibble(read_table2("03_03_run_analysis/features.txt", col_names = FALSE))
 
-activity_levels_df <-
+activity_labels_df <-
   as_tibble(read_table2("03_03_run_analysis/activity_labels.txt", col_names = FALSE))
 
 X_test_df <-
@@ -39,4 +39,12 @@ colnames(X_all_df) <-
              unique = TRUE,
              allow_ = TRUE)
 
-View(X_all_df[1:10, ])
+activity_all_df <- inner_join(y_all_df, activity_labels_df)
+
+colnames(activity_all_df) <- c("ActivityLabel", "ActivityName")
+
+colnames(subject_all_df) <- c("Subject")
+
+all_df <- bind_cols(subject_all_df, activity_all_df, X_all_df)
+
+View(all_df[1:10, ])
