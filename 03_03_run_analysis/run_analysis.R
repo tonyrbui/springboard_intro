@@ -4,7 +4,7 @@ library(dplyr)
 library(readr)
 
 # options(dplyr.width = Inf)
-rm(list=ls())
+rm(list = ls())
 
 features_df <-
   as_tibble(read_table2("03_03_run_analysis/features.txt", col_names = FALSE))
@@ -47,4 +47,9 @@ colnames(subject_all_df) <- c("Subject")
 
 all_df <- bind_cols(subject_all_df, activity_all_df, X_all_df)
 
-View(all_df[1:10, ])
+# View(all_df[1:10, ])
+
+td_df <-
+  all_df  %>% group_by(Subject, ActivityLabel, ActivityName) %>% summarise_all(mean)
+
+# all_df %>% select(Subject, ActivityName, tBodyAcc.mean...X) %>% filter(Subject == 1, ActivityName == "LAYING") %>% group_by(Subject, ActivityName) %>% summarise(avg = mean(tBodyAcc.mean...X))
